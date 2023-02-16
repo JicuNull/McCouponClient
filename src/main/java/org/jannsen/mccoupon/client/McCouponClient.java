@@ -14,7 +14,11 @@ public class McCouponClient extends McCouponBase {
     }
 
     public OfferResponse getOffers() {
-        return queryGet(new OffersRequest(API_URI), OfferResponse.class);
+        return getOffers(false);
+    }
+
+    public OfferResponse getOffers(boolean showAll) {
+        return queryGet(new OffersRequest(API_URI).setShowAll(showAll), OfferResponse.class);
     }
 
     public CodeResponse getCode(int id) {
