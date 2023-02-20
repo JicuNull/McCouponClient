@@ -1,20 +1,22 @@
 package org.jannsen.mccoupon.client.request;
 
+import org.jannsen.mccoupon.client.entity.OfferType;
+
 public class OffersRequest extends Request {
 
-    private boolean showAll;
+    private OfferType type;
 
     public OffersRequest(String apiUri) {
         super(apiUri);
     }
 
-    public OffersRequest setShowAll(boolean enabled) {
-        this.showAll = enabled;
+    public OffersRequest setType(OfferType type) {
+        this.type = type;
         return this;
     }
 
     @Override
     public String getPath() {
-        return "/offers" + (showAll ? "/all" : "");
+        return "/offers" + (type == OfferType.ALL ? "/all" : "");
     }
 }

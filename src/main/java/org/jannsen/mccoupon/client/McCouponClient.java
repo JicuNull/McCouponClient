@@ -1,5 +1,6 @@
 package org.jannsen.mccoupon.client;
 
+import org.jannsen.mccoupon.client.entity.OfferType;
 import org.jannsen.mccoupon.client.request.OffersRequest;
 import org.jannsen.mccoupon.client.request.CodeRequest;
 import org.jannsen.mccoupon.client.response.CodeResponse;
@@ -14,11 +15,11 @@ public class McCouponClient extends McCouponBase {
     }
 
     public OfferResponse getOffers() {
-        return getOffers(false);
+        return getOffers(OfferType.STANDARD);
     }
 
-    public OfferResponse getOffers(boolean showAll) {
-        return queryGet(new OffersRequest(API_URI).setShowAll(showAll), OfferResponse.class);
+    public OfferResponse getOffers(OfferType type) {
+        return queryGet(new OffersRequest(API_URI).setType(type), OfferResponse.class);
     }
 
     public CodeResponse getCode(int id) {
